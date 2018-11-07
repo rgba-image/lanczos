@@ -44,7 +44,7 @@ const getNoise = () => {
 
 const noise = getNoise()
 
-describe( 'nearest neighbour', () => {
+describe( 'lanczos', () => {
   it( 'resizes down', () => {
     const patternHalf = createImage( 4, 4 )
 
