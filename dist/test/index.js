@@ -39,7 +39,7 @@ const getNoise = () => {
     return noise;
 };
 const noise = getNoise();
-describe('nearest neighbour', () => {
+describe('lanczos', () => {
     it('resizes down', () => {
         const patternHalf = create_image_1.createImage(4, 4);
         __1.lanczos(pattern, patternHalf);
