@@ -2,6 +2,7 @@ const fixedFracBits = 14
 
 const filterValue = ( x: number, a: 2 | 3 ) => {
   if ( x <= -a || x >= a ) return 0
+  if ( x == 0 ) return 0
 
   // appears to do nothing?
   // if ( x > -1.19209290e-07 && x < 1.19209290e-07 ) return 1
