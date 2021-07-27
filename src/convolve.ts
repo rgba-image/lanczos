@@ -1,6 +1,10 @@
 const fixedFracBits = 14
 
-export const convolve = ( source: Uint8ClampedArray, dest: Uint8ClampedArray, sw: number, sh: number, dw: number, filters: Int16Array ) => {
+export const convolve = ( 
+  source: Uint8ClampedArray, dest: Uint8ClampedArray, 
+  sw: number, sh: number, dw: number, 
+  filters: Int16Array 
+) => {
   let srcOffset = 0
   let destOffset = 0
 
@@ -21,7 +25,9 @@ export const convolve = ( source: Uint8ClampedArray, dest: Uint8ClampedArray, sw
       let a = 0
 
       // Apply the filter to the row to get the destination pixel r, g, b, a
-      for ( let filterSize = filters[ filterPtr++ ]; filterSize > 0; filterSize-- ) {
+      for ( 
+        let filterSize = filters[ filterPtr++ ]; filterSize > 0; filterSize-- 
+      ) {
         const filterValue = filters[ filterPtr++ ]
 
         r = ( r + filterValue * source[ srcPtr ] ) | 0

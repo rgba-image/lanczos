@@ -15,7 +15,11 @@ const filterValue = ( x: number, a: 2 | 3 ) => {
 const toFixedPoint = ( value: number ) =>
   Math.round( value * ( ( 1 << fixedFracBits ) - 1 ) )
 
-export const filters = ( srcSize: number, destSize: number, scale: number, offset: number, use2: boolean ) => {
+export const filters = ( 
+  srcSize: number, destSize: number, 
+  scale: number, offset: number, 
+  use2: boolean 
+) => {
   const a = use2 ? 2 : 3
   const scaleInverted = 1 / scale
   const scaleClamped = Math.min( 1, scale ) // For upscale
@@ -25,6 +29,7 @@ export const filters = ( srcSize: number, destSize: number, scale: number, offse
 
   const maxFilterElementSize = Math.floor( ( srcWindow + 1 ) * 2 )
   const packedFilter = new Int16Array( ( maxFilterElementSize + 2 ) * destSize )
+  
   let packedFilterPtr = 0
 
   // For each destination pixel calculate source range and built filter values

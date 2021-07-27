@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.lanczos2 = exports.lanczos = void 0;
 const copy_1 = require("@rgba-image/copy");
 const create_image_1 = require("@rgba-image/create-image");
 const filters_1 = require("./filters");
@@ -13,7 +14,7 @@ const resize = (source, dest, use2 = false) => {
     convolve_1.convolve(source.data, tmp, source.width, source.height, dest.width, filtersX);
     convolve_1.convolve(tmp, dest.data, source.height, dest.width, dest.height, filtersY);
 };
-exports.lanczos = (source, dest, sx = 0, sy = 0, sw = source.width - sx, sh = source.height - sy, dx = 0, dy = 0, dw = dest.width - dx, dh = dest.height - dy) => {
+const lanczos = (source, dest, sx = 0, sy = 0, sw = source.width - sx, sh = source.height - sy, dx = 0, dy = 0, dw = dest.width - dx, dh = dest.height - dy) => {
     sx = sx | 0;
     sy = sy | 0;
     sw = sw | 0;
@@ -41,7 +42,8 @@ exports.lanczos = (source, dest, sx = 0, sy = 0, sw = source.width - sx, sh = so
     resize(croppedSource, croppedDest);
     copy_1.copy(croppedDest, dest, 0, 0, croppedDest.width, croppedDest.height, dx, dy);
 };
-exports.lanczos2 = (source, dest, sx = 0, sy = 0, sw = source.width - sx, sh = source.height - sy, dx = 0, dy = 0, dw = dest.width - dx, dh = dest.height - dy) => {
+exports.lanczos = lanczos;
+const lanczos2 = (source, dest, sx = 0, sy = 0, sw = source.width - sx, sh = source.height - sy, dx = 0, dy = 0, dw = dest.width - dx, dh = dest.height - dy) => {
     sx = sx | 0;
     sy = sy | 0;
     sw = sw | 0;
@@ -69,4 +71,5 @@ exports.lanczos2 = (source, dest, sx = 0, sy = 0, sw = source.width - sx, sh = s
     resize(croppedSource, croppedDest, true);
     copy_1.copy(croppedDest, dest, 0, 0, croppedDest.width, croppedDest.height, dx, dy);
 };
+exports.lanczos2 = lanczos2;
 //# sourceMappingURL=index.js.map

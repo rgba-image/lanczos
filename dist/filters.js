@@ -1,8 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.filters = void 0;
 const fixedFracBits = 14;
 const filterValue = (x, a) => {
     if (x <= -a || x >= a)
+        return 0;
+    if (x == 0)
         return 0;
     // appears to do nothing?
     // if ( x > -1.19209290e-07 && x < 1.19209290e-07 ) return 1
@@ -10,7 +13,7 @@ const filterValue = (x, a) => {
     return (Math.sin(xPi) / xPi) * Math.sin(xPi / a) / (xPi / a);
 };
 const toFixedPoint = (value) => Math.round(value * ((1 << fixedFracBits) - 1));
-exports.filters = (srcSize, destSize, scale, offset, use2) => {
+const filters = (srcSize, destSize, scale, offset, use2) => {
     const a = use2 ? 2 : 3;
     const scaleInverted = 1 / scale;
     const scaleClamped = Math.min(1, scale); // For upscale
@@ -71,6 +74,7 @@ exports.filters = (srcSize, destSize, scale, offset, use2) => {
     }
     return packedFilter;
 };
+exports.filters = filters;
 /*
   Adapted to typescript from pica: https://github.com/nodeca/pica
 

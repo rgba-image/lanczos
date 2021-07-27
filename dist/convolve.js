@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.convolve = void 0;
 const fixedFracBits = 14;
-exports.convolve = (source, dest, sw, sh, dw, filters) => {
+const convolve = (source, dest, sw, sh, dw, filters) => {
     let srcOffset = 0;
     let destOffset = 0;
     // For each row
@@ -42,6 +43,7 @@ exports.convolve = (source, dest, sw, sh, dw, filters) => {
         srcOffset = ((sourceY + 1) * sw * 4) | 0;
     }
 };
+exports.convolve = convolve;
 /*
   Adapted to typescript from pica: https://github.com/nodeca/pica
 
